@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Estudio - App de Gestión y Pomodoro</title>
+    
+    <!-- Hoja de estilos principal -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Librería Chart.js para visualización de estadísticas -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+    <!-- BARRA DE NAVEGACIÓN -->
+    <nav class="navbar" aria-label="Navegación principal">
+        <div class="logo">
+            Mi Super App
+        </div>
+        <div class="nav-links">
+            <button id="nav-inicio" class="active">Inicio</button>
+            <button id="nav-calendario">📅 Calendario</button>
+            <button id="nav-temporizador">⏱ Temporizador</button>
+            <button id="nav-estadisticas">📊 Estadísticas</button>
+        </div>
+    </nav>
+
+    <main>
+
+        <!-- 1. PANTALLA DE INICIO -->
+        <section id="pantalla-inicio" class="pantalla">
+
+            <header class="inicio-header">
+                <h1>Mi Super App de Estudio</h1>
+            </header>
+
+            <div class="layout-dos-columnas">
+                
+                <!-- COLUMNA IZQUIERDA: Materias Principales -->
+                <div class="columna-principal-app">
+                    <section class="materias-section">
+                        <h2>📚 Materias principales</h2>
+
+                        <div class="materias-container">
+                            <article class="card" data-materia="Análisis">
+                                <h3>Análisis</h3>
+                                <p class="tiempo-texto">0 min estudiados</p>
+                                <div class="tareas-container">
+                                    <h4>Pendientes:</h4>
+                                    <ul class="lista-tareas"></ul>
+                                    <div class="nueva-tarea-box">
+                                        <input type="text" class="input-tarea" placeholder="Nueva tarea..." aria-label="Nueva tarea para Análisis">
+                                        <button type="button" class="btn-agregar-tarea" aria-label="Agregar tarea">+</button>
+                                    </div>
+                                </div>
+                            </article>
+
+                            <article class="card" data-materia="Física">
+                                <h3>Física</h3>
+                                <p class="tiempo-texto">0 min estudiados</p>
+                                <div class="tareas-container">
+                                    <h4>Pendientes:</h4>
+                                    <ul class="lista-tareas"></ul>
+                                    <div class="nueva-tarea-box">
+                                        <input type="text" class="input-tarea" placeholder="Nueva tarea..." aria-label="Nueva tarea para Física">
+                                        <button type="button" class="btn-agregar-tarea" aria-label="Agregar tarea">+</button>
+                                    </div>
+                                </div>
+                            </article>
+                        </div>
+                    </section>
+                </div>
+
+                <!-- COLUMNA DERECHA: Estudios Complementarios y Clases -->
+                <div class="columna-lateral-app">
+                    <section class="materias-section">
+                        <h2>🌱 Estudios complementarios</h2>
+
+                        <!-- Idiomas -->
+                        <section class="sub-grupo-estudio">
+                            <h3>Idiomas:</h3>
+                            <div class="materias-container">
+                                <article class="card" data-materia="Francés">
+                                    <h4>Francés</h4>
+                                    <p class="tiempo-texto">0 min estudiados</p>
+                                    <div class="tareas-container">
+                                        <h5>Pendientes:</h5>
+                                        <ul class="lista-tareas"></ul>
+                                        <div class="nueva-tarea-box">
+                                            <input type="text" class="input-tarea" placeholder="Nueva tarea..." aria-label="Nueva tarea para Francés">
+                                            <button type="button" class="btn-agregar-tarea" aria-label="Agregar tarea">+</button>
+                                        </div>
+                                    </div>
+                                </article>
+
+                                <article class="card" data-materia="Inglés">
+                                    <h4>Inglés</h4>
+                                    <p class="tiempo-texto">0 min estudiados</p>
+                                    <div class="tareas-container">
+                                        <h5>Pendientes:</h5>
+                                        <ul class="lista-tareas"></ul>
+                                        <div class="nueva-tarea-box">
+                                            <input type="text" class="input-tarea" placeholder="Nueva tarea..." aria-label="Nueva tarea para Inglés">
+                                            <button type="button" class="btn-agregar-tarea" aria-label="Agregar tarea">+</button>
+                                        </div>
+                                    </div>
+                                </article>
+                            </div>
+                        </section>
+
+                        <!-- Programación -->
+                        <section class="sub-grupo-estudio" style="margin-top: 20px;">
+                            <h3>Programación / Tecnología:</h3>
+                            <div class="materias-container">
+                                <article class="card" data-materia="Python">
+                                    <h4>Python</h4>
+                                    <p class="tiempo-texto">0 min estudiados</p>
+                                    <div class="tareas-container">
+                                        <h5>Pendientes:</h5>
+                                        <ul class="lista-tareas"></ul>
+                                        <div class="nueva-tarea-box">
+                                            <input type="text" class="input-tarea" placeholder="Nueva tarea..." aria-label="Nueva tarea para Python">
+                                            <button type="button" class="btn-agregar-tarea" aria-label="Agregar tarea">+</button>
+                                        </div>
+                                    </div>
+                                </article>
+
+                                <article class="card" data-materia="Claude">
+                                    <h4>Claude</h4>
+                                    <p class="tiempo-texto">0 min estudiados</p>
+                                    <div class="tareas-container">
+                                        <h5>Pendientes:</h5>
+                                        <ul class="lista-tareas"></ul>
+                                        <div class="nueva-tarea-box">
+                                            <input type="text" class="input-tarea" placeholder="Nueva tarea..." aria-label="Nueva tarea para Claude">
+                                            <button type="button" class="btn-agregar-tarea" aria-label="Agregar tarea">+</button>
+                                        </div>
+                                    </div>
+                                </article>
+                            </div>
+                        </section>
+
+                        <!-- NUEVA SECCIÓN: Clases dictadas -->
+                        <section class="sub-grupo-estudio" style="margin-top: 20px;">
+                            <h3>👨‍🏫 Clases:</h3>
+                            <div class="materias-container">
+                                <article class="card card-clases" data-materia="Clases Dictadas">
+                                    <h4>Clases Particulares</h4>
+                                    <p class="tiempo-texto" id="texto-horas-clases">0 hrs / semana</p>
+                                    <div class="tareas-container">
+                                        <h5>Configurar horas semanales:</h5>
+                                        <div class="nueva-tarea-box" style="display: flex; gap: 5px;">
+                                            <input type="number" id="input-horas-clases" class="input-tarea" placeholder="Horas semanales..." min="0" step="0.5" aria-label="Horas semanales de clases">
+                                            <button type="button" id="btn-guardar-clases" class="btn-agregar-tarea" aria-label="Guardar horas">💾</button>
+                                        </div>
+                                    </div>
+                                </article>
+                            </div>
+                        </section>
+
+                    </section>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 2. PANTALLA CALENDARIO -->
+        <section id="pantalla-calendario" class="pantalla" style="display: none;">
+            <header>
+                <h1>Planificador de Estudio</h1>
+            </header>
+
+            <div class="calendario-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                <button type="button" id="btn-mes-prev">&lt; Mes Anterior</button>
+                <h2 id="titulo-mes" style="margin: 0; font-size: 1.2rem;"></h2>
+                <button type="button" id="btn-mes-next">Mes Siguiente &gt;</button>
+            </div>
+
+            <!-- Grilla del Calendario -->
+            <div id="grilla-dias-semana" style="display: grid; grid-template-columns: repeat(7, 1fr); text-align: center; font-weight: bold; margin-bottom: 8px;">
+                <div>Dom</div><div>Lun</div><div>Mar</div><div>Mié</div><div>Jue</div><div>Vie</div><div>Sáb</div>
+            </div>
+
+            <div id="grilla-calendario" style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px;">
+                <!-- Días cargados dinámicamente -->
+            </div>
+
+            <!-- Panel de Planes del Día Seleccionado -->
+            <div id="panel-plan-dia" style="margin-top: 25px; padding: 15px; border-radius: 8px; background: rgba(0,0,0,0.03); border: 1px solid rgba(0,0,0,0.1);">
+                <h3 id="titulo-dia-seleccionado">Seleccioná un día del calendario</h3>
+                <div id="lista-planes-dia"></div>
+
+                <div id="form-nuevo-plan" style="margin-top: 15px; display: none; gap: 8px; flex-wrap: wrap; align-items: center;">
+                    <select id="select-materia-plan" aria-label="Materia a planificar">
+                        <option value="Análisis">Análisis</option>
+                        <option value="Física">Física</option>
+                        <option value="Francés">Francés</option>
+                        <option value="Inglés">Inglés</option>
+                        <option value="Python">Python</option>
+                        <option value="Claude">Claude</option>
+                        <option value="Clases Dictadas">Clases Dictadas</option>
+                    </select>
+
+                    <select id="select-categoria-plan" aria-label="Categoría del plan">
+                        <option value="Principal">📚 Principal</option>
+                        <option value="Complementaria">🌱 Complementaria</option>
+                        <option value="Docencia">👨‍🏫 Docencia</option>
+                    </select>
+
+                    <!-- 🕒 CAMPOS DE HORARIO -->
+                    <div style="display: flex; gap: 5px; align-items: center;">
+                        <input type="time" id="input-hora-inicio" class="input-form" aria-label="Hora de inicio" title="Desde" style="padding: 4px;">
+                        <span style="color: #666; font-size: 0.9rem;">a</span>
+                        <input type="time" id="input-hora-fin" class="input-form" aria-label="Hora de fin" title="Hasta" style="padding: 4px;">
+                    </div>
+
+                    <input type="number" id="input-tiempo-plan" placeholder="Tiempo (min)" style="width: 110px;" min="5" step="5" aria-label="Tiempo en minutos">
+
+                    <input type="text" id="input-detalle-plan" placeholder="Ej: Repasar Tema 3..." style="flex: 1; min-width: 180px;" aria-label="Detalle del plan">
+                    
+                    <button type="button" id="btn-guardar-plan" style="background: #4caf50; color: white; border: none; padding: 8px 15px; border-radius: 4px; cursor: pointer; font-weight: bold;">+ Planificar</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. PANTALLA DEL TEMPORIZADOR Y REGISTRO MANUAL -->
+        <section id="pantalla-temporizador" class="pantalla" style="display: none;">
+            <h1>⏱ Temporizador</h1>
+
+            <div class="temporizador">
+                <div class="selector-materia-container">
+                    <label for="select-materia">¿Qué vas a estudiar?</label>
+                    <select id="select-materia">
+                        <option value="Análisis">Análisis</option>
+                        <option value="Física">Física</option>
+                        <option value="Francés">Francés</option>
+                        <option value="Inglés">Inglés</option>
+                        <option value="Python">Python</option>
+                        <option value="Claude">Claude</option>
+                        <option value="Clases Dictadas">Clases Dictadas</option>
+                    </select>
+                </div>
+
+                <div id="tiempo">
+                    25:00
+                </div>
+
+                <div class="temporizador-botones">
+                    <button type="button" id="btn-iniciar">Iniciar</button>
+                    <button type="button" id="btn-pausar">Pausar</button>
+                    <button type="button" id="btn-reiniciar">Reiniciar</button>
+                </div>
+            </div>
+
+            <!-- Panel de registro manual (ahora está acá adentro, bien ubicado) -->
+            <div id="registro-manual" style="margin-top: 30px; padding: 20px; background: #f5f5f5; border-radius: 8px; border-left: 5px solid #2196f3;">
+                <h3 style="margin-top: 0; color: #333;">➕ Tiempo estudiado manual</h3>
+                <p style="font-size: 0.9rem; color: #666; margin-bottom: 15px;">Anotá los minutos que hiciste fuera de la app.</p>
+                
+                <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 20px;">
+                    <select id="select-materia-manual" class="input-form">
+                        <option value="Análisis">Análisis</option>
+                        <option value="Física">Física</option>
+                        <option value="Francés">Francés</option>
+                        <option value="Inglés">Inglés</option>
+                        <option value="Python">Python</option>
+                        <option value="Claude">Claude</option>
+                    </select>
+                    <input type="number" id="input-minutos-manual" placeholder="Ej: 60 (minutos)" class="input-form" style="width: 150px;">
+                    <button id="btn-guardar-manual" style="background: #2196f3; color: white; border: none; padding: 8px 15px; border-radius: 4px; cursor: pointer; font-weight: bold;">Guardar tiempo</button>
+                </div>
+
+                <div id="contenedor-historial-hoy" style="border-top: 1px solid #ddd; padding-top: 15px;">
+                    <h4 style="margin: 0 0 10px 0; color: #444;">📚 Sesiones de Hoy</h4>
+                    <ul id="lista-historial-hoy" style="list-style: none; padding: 0; margin: 0;">
+                        <!-- Acá van a aparecer las sesiones con su botón de eliminar -->
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. PANTALLA ESTADÍSTICAS -->
+        <section id="pantalla-estadisticas" class="pantalla" style="display: none;">
+            <header>
+                <h1>Estadísticas de Estudio</h1>
+            </header>
+
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <span class="metric-icon">🔥</span>
+                    <div>
+                        <h3 id="stat-racha">0 días</h3>
+                        <p>Racha actual</p>
+                        <small id="stat-meta-hoy" style="color: #666; font-size: 0.8rem;">Meta hoy: 0/25 min</small>
+                    </div>
+                </div>
+
+                <div class="metric-card">
+                    <span class="metric-icon">⏱</span>
+                    <div>
+                        <h3 id="stat-total">0 min</h3>
+                        <p>Tiempo total</p>
+                    </div>
+                </div>
+
+                <div class="metric-card">
+                    <span class="metric-icon">🏆</span>
+                    <div>
+                        <h3 id="stat-favorita">-</h3>
+                        <p>Materia principal</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Gráfico 1: Dona por Materia -->
+            <div class="stats-container">
+                <h2>Distribución por Materia</h2>
+                <div style="max-width: 320px; margin: 0 auto; padding-top: 10px;">
+                    <canvas id="chart-materias"></canvas>
+                </div>
+            </div>
+
+            <!-- Gráfico 2: Barras Semanales -->
+            <div class="stats-container" style="margin-top: 24px;">
+                <h2>Tiempo Semanal (Minutos)</h2>
+                <div style="padding-top: 10px;">
+                    <canvas id="chart-semanal"></canvas>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Script de la aplicación al final del body -->
+    <script src="script.js" defer></script>
+</body>
+
+</html>
